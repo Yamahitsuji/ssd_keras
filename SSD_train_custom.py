@@ -24,7 +24,7 @@ plt.rcParams['image.interpolation'] = 'nearest'
 
 np.set_printoptions(suppress=True)
 
-NUM_CLASSES = 2
+NUM_CLASSES = 4
 input_shape = (300, 300, 3)
 
 priors = pickle.load(open('prior_boxes_ssd300.pkl', 'rb'))
@@ -264,7 +264,7 @@ history = model.fit_generator(gen.generate(True), gen.train_batches,
                               nb_worker=1)
 
 elapsed_time = time.time() - start
-print ("elapsed_time:{0}".format(elapsed_time) + "[sec]")
+print("elapsed_time:{0}".format(elapsed_time) + "[sec]")
 
 # plot performance
 plt.plot(history.history['acc'])
