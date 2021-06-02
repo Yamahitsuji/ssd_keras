@@ -20,9 +20,10 @@ class XML_preprocessor(object):
             size_tree = root.find('size')
             width = float(size_tree.find('width').text)
             height = float(size_tree.find('height').text)
+            expected_obj = ['person', 'chair', 'car']
             for object_tree in root.findall('object'):
                 class_name = object_tree.find('name').text
-                if class_name != 'person' and class_name != 'chair' and class_name != 'car':
+                if class_name not in expected_obj:
                     continue
                 for bounding_box in object_tree.iter('bndbox'):
                     xmin = float(bounding_box.find('xmin').text)/width
@@ -33,6 +34,8 @@ class XML_preprocessor(object):
                 bounding_boxes.append(bounding_box)
                 one_hot_class = self._to_one_hot(class_name)
                 one_hot_classes.append(one_hot_class)
+            if len(bounding_boxes) == 0:
+                continue
             image_name = root.find('filename').text
             bounding_boxes = np.asarray(bounding_boxes)
             one_hot_classes = np.asarray(one_hot_classes)
