@@ -99,7 +99,9 @@ ENV/
 # data
 ./PASCAL_VOC/data
 
-# outputs
+
+# in/outputs
+testing_utils/inputs
 testing_utils/outputs
 
 # editor
