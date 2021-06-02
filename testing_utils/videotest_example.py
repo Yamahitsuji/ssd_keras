@@ -9,8 +9,8 @@ from ssd import SSD300 as SSD
 input_shape = (300,300,3)
 
 # Change this if you run with other classes than VOC
-class_names = ["rem"];
-NUM_CLASSES = 2
+class_names = ["person", "chair", "car"]
+NUM_CLASSES = 4
 
 model = SSD(input_shape, num_classes=NUM_CLASSES)
 

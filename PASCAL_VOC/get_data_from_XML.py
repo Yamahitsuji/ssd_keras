@@ -29,6 +29,8 @@ class XML_preprocessor(object):
                 bounding_box = [xmin,ymin,xmax,ymax]
                 bounding_boxes.append(bounding_box)
                 class_name = object_tree.find('name').text
+                if class_name != 'person' and class_name != 'chair' and class_name == 'car':
+                    continue
                 one_hot_class = self._to_one_hot(class_name)
                 one_hot_classes.append(one_hot_class)
             image_name = root.find('filename').text
@@ -39,8 +41,12 @@ class XML_preprocessor(object):
 
     def _to_one_hot(self, name):
         one_hot_vector = [0] * self.num_classes
-        if name == 'rem':
+        if name == 'person':
             one_hot_vector[0] = 1
+        elif name == 'chair':
+            one_hot_vector[1] = 1
+        elif name == 'car':
+            one_hot_vector[2] = 1
         else:
             print('unknown label: %s' %name)
 

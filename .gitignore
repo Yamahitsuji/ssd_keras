@@ -97,7 +97,7 @@ ENV/
 ./checkpoints
 
 # data
-./PASCAL_VOC/data
+PASCAL_VOC/data
 
 
 # in/outputs

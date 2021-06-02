@@ -1,7 +1,7 @@
 from PIL import Image
 import os
 
-filepath = "./data/Images/"
+filepath = "./data/JPEGImages/"
 filenames = os.listdir(filepath)
 for filename in filenames:
     img_path = filepath + filename
