@@ -93,6 +93,12 @@ ENV/
 # Rope project settings
 .ropeproject
 
+# checkpoints
+./checkpoints
+
+# data
+./PASCAL_VOC/data
+
 # outputs
 testing_utils/outputs
 
