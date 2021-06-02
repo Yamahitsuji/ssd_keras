@@ -219,7 +219,7 @@ checkpoints_dir = os.path.dirname(os.path.abspath(__file__)) + "/checkpoints"
 if not os.path.exists(checkpoints_dir):
     os.makedirs(checkpoints_dir)
 
-path_prefix = './PASCAL_VOC/data/JPEGImages/'
+path_prefix = './PASCAL_VOC/data/Images/'
 gen = Generator(gt, bbox_util, 4, path_prefix,
                 train_keys, val_keys,
                 (input_shape[0], input_shape[1]), do_crop=False)
