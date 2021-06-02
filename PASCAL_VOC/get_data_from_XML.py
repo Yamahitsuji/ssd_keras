@@ -6,7 +6,7 @@ class XML_preprocessor(object):
 
     def __init__(self, data_path):
         self.path_prefix = data_path
-        self.num_classes = 1
+        self.num_classes = 3
         self.data = dict()
         self._preprocess_XML()
 
@@ -21,6 +21,9 @@ class XML_preprocessor(object):
             width = float(size_tree.find('width').text)
             height = float(size_tree.find('height').text)
             for object_tree in root.findall('object'):
+                class_name = object_tree.find('name').text
+                if class_name != 'person' and class_name != 'chair' and class_name != 'car':
+                    continue
                 for bounding_box in object_tree.iter('bndbox'):
                     xmin = float(bounding_box.find('xmin').text)/width
                     ymin = float(bounding_box.find('ymin').text)/height
@@ -28,9 +31,6 @@ class XML_preprocessor(object):
                     ymax = float(bounding_box.find('ymax').text)/height
                 bounding_box = [xmin,ymin,xmax,ymax]
                 bounding_boxes.append(bounding_box)
-                class_name = object_tree.find('name').text
-                if class_name != 'person' and class_name != 'chair' and class_name == 'car':
-                    continue
                 one_hot_class = self._to_one_hot(class_name)
                 one_hot_classes.append(one_hot_class)
             image_name = root.find('filename').text
