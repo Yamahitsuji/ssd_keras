@@ -6,7 +6,7 @@ class XML_preprocessor(object):
 
     def __init__(self, data_path):
         self.path_prefix = data_path
-        self.num_classes = 3
+        self.num_classes = 1
         self.data = dict()
         self._preprocess_XML()
 
@@ -20,7 +20,7 @@ class XML_preprocessor(object):
             size_tree = root.find('size')
             width = float(size_tree.find('width').text)
             height = float(size_tree.find('height').text)
-            expected_obj = ['person', 'chair', 'car']
+            expected_obj = ['car']
             for object_tree in root.findall('object'):
                 class_name = object_tree.find('name').text
                 if class_name not in expected_obj:
@@ -44,12 +44,8 @@ class XML_preprocessor(object):
 
     def _to_one_hot(self, name):
         one_hot_vector = [0] * self.num_classes
-        if name == 'person':
+        if name == 'car':
             one_hot_vector[0] = 1
-        elif name == 'chair':
-            one_hot_vector[1] = 1
-        elif name == 'car':
-            one_hot_vector[2] = 1
         else:
             print('unknown label: %s' %name)
 

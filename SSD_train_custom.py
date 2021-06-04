@@ -24,7 +24,7 @@ plt.rcParams['image.interpolation'] = 'nearest'
 
 np.set_printoptions(suppress=True)
 
-NUM_CLASSES = 4
+NUM_CLASSES = 2
 input_shape = (300, 300, 3)
 
 priors = pickle.load(open('prior_boxes_ssd300.pkl', 'rb'))
